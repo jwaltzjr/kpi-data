@@ -1,4 +1,7 @@
 import datetime
+import pyodbc
+
+from app import db
 
 class MonthData(object):
 
@@ -10,3 +13,20 @@ class MonthData(object):
 
     def __repr__(self):
         return '<MONTHDATA {} - {}, {}>'.format(self.month_id, self.miles, self.avg_drivers)
+
+    def save(self):
+        insert_statement = """
+            INSERT INTO TMWIN.KRC_MONTHLY_KPI_DATA
+                (ID, MONTH, MILES, AVG_DRIVERS)
+            VALUES
+                (?,?,?,?)
+        """
+        with db as database:
+            with database.connection.cursor() as cursor:
+                cursor.execute(
+                    insert_statement,
+                    self.month_id,
+                    self.month_start,
+                    self.miles,
+                    self.avg_drivers
+                )
