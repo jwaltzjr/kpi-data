@@ -1,6 +1,11 @@
 <html>
   <head>
-      <title>{{ title }}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A webapp built for KRC Logistics for adding and modifying KPI data.">
+    <meta name="author" content="Jeff Waltz, Jr.">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <title>{{ title }}</title>
   </head>
   <body>
     {% with messages = get_flashed_messages() %}
@@ -15,5 +20,9 @@
 
     {% block content %}
     {% endblock %}
+
+    <!-- JS at end of file for faster page loading -->
+    <script src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
   </body>
 </html>
