@@ -20,3 +20,12 @@ def index():
         title = 'KPI Data Entry',
         form = form
     )
+
+@app.route('/history')
+def history():
+    data = models.MonthData.fetchall()
+    return render_template(
+        'history.html',
+        title = 'KPI Data History',
+        data = data
+    )

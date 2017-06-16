@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>KPI Data History</h1>
+  <table>
+    <tr>
+      <th>MONTH</th>
+      <th>MILES</th>
+      <th>AVG DRIVERS</th>
+    </tr>
+    {% for row in data %}
+      <tr>
+        <td>{{ row.ID }}</td>
+        <td>{{ row.MILES }}</td>
+        <td>{{ row.AVG_DRIVERS }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
