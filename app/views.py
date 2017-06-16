@@ -1,5 +1,13 @@
-from app import app
+from flask import render_template
 
-@app.route('/')
+from app import app
+from .forms import InputForm
+
+@app.route('/', methods=['GET','POST'])
 def index():
-    return 'Hello World'
+    form = InputForm()
+    return render_template(
+        'index.html',
+        title = 'KPI Data Entry',
+        form = form
+    )
