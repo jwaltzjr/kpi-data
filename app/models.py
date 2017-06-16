@@ -5,7 +5,7 @@ from app import db
 
 class MonthData(object):
 
-    @classmethod
+    @staticmethod
     def fetchall():
         select_statement = """
             SELECT ID, MONTH, MILES, AVG_DRIVERS
