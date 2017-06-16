@@ -1,0 +1,3 @@
+[submodule "krc"]
+	path = krc
+	url = https://github.com/jwaltzjr/krc
