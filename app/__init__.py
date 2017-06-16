@@ -1,7 +1,7 @@
 from flask import Flask
 
-from ..krc.database import DatabaseConnection
-from ..krc.env import EnvVar
+from krc.database import DatabaseConnection
+from krc.env import EnvVar
 
 app = Flask(__name__)
 app.config.from_object('config')
