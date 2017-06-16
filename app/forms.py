@@ -4,19 +4,25 @@ from wtforms import DateTimeField, IntegerField, SelectField
 from wtforms.validators import DataRequired
 
 MONTHS = [
-    (1, 'January'),
-    (2, 'February'),
-    (3, 'March'),
-    (4, 'April'),
-    (5, 'May'),
-    (6, 'June'),
-    (7, 'July'),
-    (8, 'August'),
-    (9, 'September'),
-    (10, 'October'),
-    (11, 'November'),
-    (12, 'December')
+    ('01', 'January'),
+    ('02', 'February'),
+    ('03', 'March'),
+    ('04', 'April'),
+    ('05', 'May'),
+    ('06', 'June'),
+    ('07', 'July'),
+    ('08', 'August'),
+    ('09', 'September'),
+    ('10', 'October'),
+    ('11', 'November'),
+    ('12', 'December')
 ]
+
+YEARS = []
+for years_ago in range(2):
+    year = datetime.datetime.utcnow().year - years_ago
+    choice = (str(year), str(year))
+    YEARS.append(choice)
 
 class InputForm(FlaskForm):
     month = SelectField(
@@ -24,9 +30,9 @@ class InputForm(FlaskForm):
         choices=MONTHS,
         validators=[DataRequired()]
     )
-    year = IntegerField(
+    year = SelectField(
         'year',
-        default=int(datetime.datetime.utcnow().year),
+        choices=YEARS,
         validators=[DataRequired()]
     )
     miles = IntegerField(
