@@ -1,19 +1,24 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>KPI Data History</h1>
-  <table>
-    <tr>
-      <th>MONTH</th>
-      <th>MILES</th>
-      <th>AVG DRIVERS</th>
-    </tr>
-    {% for row in data %}
+  <div class="panel panel-default">
+    <div class="panel-heading">KPI Data History</div>
+    <div class="panel-body">
+      <p>View, edit, and delete historical KPI data.</p>
+    </div>
+    <table class="table">
       <tr>
-        <td>{{ row.ID }}</td>
-        <td>{{ row.MILES }}</td>
-        <td>{{ row.AVG_DRIVERS }}</td>
+        <th>MONTH</th>
+        <th>MILES</th>
+        <th>AVG DRIVERS</th>
       </tr>
-    {% endfor %}
-  </table>
+      {% for row in data %}
+        <tr>
+          <td>{{ row.ID }}</td>
+          <td>{{ row.MILES }}</td>
+          <td>{{ row.AVG_DRIVERS }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
 {% endblock %}
