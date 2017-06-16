@@ -13,6 +13,7 @@ def index():
             form.miles.data,
             form.avg_drivers.data
         )
+        month_data.save()
         flash('Month {} has been saved.'.format(month_data))
         return redirect(url_for('index'))
     return render_template(
