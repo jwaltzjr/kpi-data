@@ -6,4 +6,4 @@ class MonthData(object):
         self.avg_drivers = avg_drivers
 
     def __repr__(self):
-        return '<{} - {}, {}>'.format(self.month, self.miles, self.avg_drivers)
+        return '<MONTHDATA {} - {}, {}>'.format(self.month, self.miles, self.avg_drivers)
