@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Input KPI Data:</h1>
+  <form action="" method="post" name="kpi-data">
+    {{ form.hidden_tag() }}
+    <p>
+      {{ form.month }}
+      {% for error in form.month.errors %}
+        <span>{{ error }}</span>
+      {% endfor %}
+      {{ form.year }}
+      {% for error in form.year.errors %}
+        <span>{{ error }}</span>
+      {% endfor %}
+      {{ form.miles }}
+      {% for error in form.miles.errors %}
+        <span>{{ error }}</span>
+      {% endfor %}
+      {{ form.avg_drivers }}
+      {% for error in form.avg_drivers.errors %}
+        <span>{{ error }}</span>
+      {% endfor %}
+    </p>
+    <input type="submit" value="Submit">
+  </form>
+{% endblock %}

@@ -3,8 +3,15 @@ from flask import render_template, url_for, flash, redirect
 from app import app
 from . import forms, models
 
-@app.route('/', methods=['GET','POST'])
+@app.route('/')
 def index():
+    return render_template(
+        'index.html',
+        title = 'KPI Data'
+    )
+
+@app.route('/add', methods=['GET','POST'])
+def add():
     form = forms.InputForm()
     if form.validate_on_submit():
         month_data = models.MonthData(
@@ -17,8 +24,8 @@ def index():
         flash('Month {} has been saved.'.format(month_data))
         return redirect(url_for('index'))
     return render_template(
-        'index.html',
-        title = 'KPI Data Entry',
+        'add.html',
+        title = 'Add Entry - KPI Data',
         form = form
     )
 
@@ -27,6 +34,6 @@ def history():
     data = models.MonthData.fetchall()
     return render_template(
         'history.html',
-        title = 'KPI Data History',
+        title = 'History - KPI Data',
         data = data
     )
