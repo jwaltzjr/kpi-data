@@ -16,6 +16,18 @@ class MonthData(object):
                 cursor.execute(select_statement)
                 return cursor.fetchall()
 
+    @staticmethod
+    def fetch(id):
+        select_statement = """
+            SELECT ID, MONTH, MILES, AVG_DRIVERS
+            FROM TMWIN.KRC_MONTHLY_KPI_DATA
+            WHERE ID = ?
+        """
+        with db as database:
+            with database.connection.cursor() as cursor:
+                cursor.execute(select_statement, id)
+                return cursor.fetchone()
+
     def __init__(self, month, year, miles, avg_drivers):
         self.month_id = str(month) + '-' + str(year)
         self.month_start = datetime.datetime.strptime(self.month_id, '%m-%Y')
