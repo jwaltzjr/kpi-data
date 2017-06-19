@@ -10,6 +10,7 @@ class MonthData(object):
         select_statement = """
             SELECT ID, MONTH, MILES, AVG_DRIVERS
             FROM TMWIN.KRC_MONTHLY_KPI_DATA
+            WITH UR
         """
         with db as database:
             with database.connection.cursor() as cursor:
@@ -22,6 +23,7 @@ class MonthData(object):
             SELECT ID, MONTH, MILES, AVG_DRIVERS
             FROM TMWIN.KRC_MONTHLY_KPI_DATA
             WHERE ID = ?
+            WITH UR
         """
         with db as database:
             with database.connection.cursor() as cursor:
