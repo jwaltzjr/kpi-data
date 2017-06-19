@@ -29,6 +29,28 @@ def add():
         form = form
     )
 
+@app.route('/edit/<id>', methods=['GET','POST'])
+def edit(id):
+    form = forms.InputForm()
+    month_data = models.MonthData.fetch(id)
+    if form.validate_on_submit():
+        month_date.miles = form.miles.data
+        month_date.avg_drivers = form.avg_drivers.data
+        month_data.update()
+        flash('Month {} has been saved.'.format(month_data))
+        return redirect(url_for('index'))
+    elif flask.request.method == 'GET':
+        form.month.data = month_data.month_id[:2],
+        form.year.data = month_data.month_id[-4:],
+        form.miles.data = month.miles,
+        form.avg_drivers.data = month.avg_drivers
+    return render_template(
+        'add.html',
+        title = 'Add Entry - KPI Data',
+        form = form,
+        month_id = month_data.month_id
+    )
+
 @app.route('/history')
 def history():
     data = models.MonthData.fetchall()
