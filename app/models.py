@@ -55,3 +55,18 @@ class MonthData(object):
                     self.miles,
                     self.avg_drivers
                 )
+
+    def update(self):
+        update_statement = """
+            UPDATE TMWIN.KRC_MONTHLY_KPI_DATA
+            SET MILES = ?, AVG_DRIVERS = ?
+            WHERE ID = ?
+        """
+        with db as database:
+            with database.connection.cursor() as cursor:
+                cursor.execute(
+                    update_statement,
+                    self.miles,
+                    self.avg_drivers,
+                    self.month_id
+                )
