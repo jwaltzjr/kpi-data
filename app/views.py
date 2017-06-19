@@ -20,7 +20,7 @@ def add():
             form.miles.data,
             form.avg_drivers.data
         )
-        month_data.save()
+        month_data.insert()
         flash('Month {} has been saved.'.format(month_data))
         return redirect(url_for('index'))
     return render_template(

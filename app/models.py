@@ -39,7 +39,7 @@ class MonthData(object):
     def __repr__(self):
         return '<MONTHDATA {} - {}, {}>'.format(self.month_id, self.miles, self.avg_drivers)
 
-    def save(self):
+    def insert(self):
         insert_statement = """
             INSERT INTO TMWIN.KRC_MONTHLY_KPI_DATA
                 (ID, MONTH, MILES, AVG_DRIVERS)
