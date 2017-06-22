@@ -18,14 +18,13 @@ class MonthData(object):
                 queryset = cursor.fetchall()
         months = []
         for row in queryset:
-            month = Monthdata(
+            month = MonthData(
                 row.MILES,
                 row.AVG_DRIVERS,
-                month_id = row.MONTH_ID
+                month_id = row.ID
             )
             months.append(month)
         return months
-
 
     @staticmethod
     def fetch(id):
@@ -42,7 +41,7 @@ class MonthData(object):
         return MonthData(
             month.MILES,
             month.AVG_DRIVERS,
-            month_id = month.MONTH_ID
+            month_id = month.ID
         )
 
     def __init__(self, miles, avg_drivers, month=None, year=None, month_id=None):
