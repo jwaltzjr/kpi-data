@@ -15,7 +15,17 @@ class MonthData(object):
         with db as database:
             with database.connection.cursor() as cursor:
                 cursor.execute(select_statement)
-                return cursor.fetchall()
+                queryset = cursor.fetchall()
+        months = []
+        for row in queryset:
+            month = Monthdata(
+                row.MILES,
+                row.AVG_DRIVERS,
+                month_id = row.MONTH_ID
+            )
+            months.append(month)
+        return months
+
 
     @staticmethod
     def fetch(id):
@@ -28,10 +38,20 @@ class MonthData(object):
         with db as database:
             with database.connection.cursor() as cursor:
                 cursor.execute(select_statement, id)
-                return cursor.fetchone()
+                month = cursor.fetchone()
+        return MonthData(
+            month.MILES,
+            month.AVG_DRIVERS,
+            month_id = month.MONTH_ID
+        )
 
-    def __init__(self, month, year, miles, avg_drivers):
-        self.month_id = str(month) + '-' + str(year)
+    def __init__(self, miles, avg_drivers, month=None, year=None, month_id=None):
+        if (month and year):
+            self.month_id = str(month) + '-' + str(year)
+        elif month_id:
+            self.month_id = month_id
+        else:
+            raise ValueError('Missing arguments - no month provided.')
         self.month_start = datetime.datetime.strptime(self.month_id, '%m-%Y')
         self.miles = miles
         self.avg_drivers = avg_drivers

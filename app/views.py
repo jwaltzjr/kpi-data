@@ -15,10 +15,10 @@ def add():
     form = forms.InputForm()
     if form.validate_on_submit():
         month_data = models.MonthData(
-            form.month.data,
-            form.year.data,
             form.miles.data,
-            form.avg_drivers.data
+            form.avg_drivers.data,
+            month = form.month.data,
+            year = form.year.data,
         )
         month_data.insert()
         flash('Month {} has been saved.'.format(month_data))

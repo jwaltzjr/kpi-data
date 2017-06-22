@@ -12,11 +12,11 @@
         <th>MILES</th>
         <th>AVG DRIVERS</th>
       </tr>
-      {% for row in data %}
+      {% for month in data %}
         <tr>
-          <td>{{ row.ID }}</td>
-          <td>{{ row.MILES }}</td>
-          <td>{{ row.AVG_DRIVERS }}</td>
+          <td>{{ month.month_id }}</td>
+          <td>{{ month.miles }}</td>
+          <td>{{ month.avg_drivers }}</td>
         </tr>
       {% endfor %}
     </table>
