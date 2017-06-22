@@ -19,8 +19,12 @@
           <td>{{ month.miles }}</td>
           <td>{{ month.avg_drivers }}</td>
           <td class="edit-icons">
-            <a href="{{ url_for('edit', id=month.month_id) }}" class="glyphicon glyphicon-pencil"></a>
-            <a href="{{ url_for('delete', id=month.month_id) }}" class="glyphicon glyphicon-remove"></a>
+            <a href="{{ url_for('edit', id=month.month_id) }}" class="btn btn-default">
+              <span class="glyphicon glyphicon-pencil"></span>
+            </a>
+            <a href="{{ url_for('delete', id=month.month_id) }}" class="btn btn-default">
+              <span class="glyphicon glyphicon-remove"></span>
+            </a>
           </td>
         </tr>
       {% endfor %}
