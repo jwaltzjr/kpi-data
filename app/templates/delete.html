@@ -13,14 +13,12 @@
         <th>AVG DRIVERS</th>
         <th></th>
       </tr>
-      {% for month in data %}
-        <tr>
-          <td>{{ month.month_id }}</td>
-          <td>{{ month.miles }}</td>
-          <td>{{ month.avg_drivers }}</td>
-          <td><a href="{{ url_for('delete_confirmed', id=month.month_id) }}" class="btn btn-danger" value="DELETE"></td>
-        </tr>
-      {% endfor %}
+      <tr>
+        <td>{{ month.month_id }}</td>
+        <td>{{ month.miles }}</td>
+        <td>{{ month.avg_drivers }}</td>
+        <td><a href="{{ url_for('delete_confirmed', id=month.month_id) }}" class="btn btn-danger" value="DELETE"></td>
+      </tr>
     </table>
   </div>
 {% endblock %}
