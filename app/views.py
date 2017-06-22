@@ -42,8 +42,8 @@ def edit(id):
     elif request.method == 'GET':
         form.month.data = month_data.month_id[:2],
         form.year.data = month_data.month_id[-4:],
-        form.miles.data = month.miles,
-        form.avg_drivers.data = month.avg_drivers
+        form.miles.data = month_data.miles,
+        form.avg_drivers.data = month_data.avg_drivers
     return render_template(
         'add.html',
         title = 'Add Entry - KPI Data',
