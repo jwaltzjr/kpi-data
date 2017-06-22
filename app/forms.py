@@ -24,7 +24,7 @@ for years_ago in range(2):
     choice = (str(year), str(year))
     YEARS.append(choice)
 
-class InputForm(FlaskForm):
+class MonthDataAddForm(FlaskForm):
     month = SelectField(
         'month',
         choices=MONTHS,
@@ -35,6 +35,16 @@ class InputForm(FlaskForm):
         choices=YEARS,
         validators=[DataRequired()]
     )
+    miles = IntegerField(
+        'miles',
+        validators=[DataRequired()]
+    )
+    avg_drivers = IntegerField(
+        'avg_drivers',
+        validators=[DataRequired()]
+    )
+
+class MonthDataUpdateForm(FlaskForm):
     miles = IntegerField(
         'miles',
         validators=[DataRequired()]

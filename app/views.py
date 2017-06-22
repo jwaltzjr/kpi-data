@@ -13,7 +13,7 @@ def index():
 
 @app.route('/add', methods=['GET','POST'])
 def add():
-    form = forms.InputForm()
+    form = forms.MonthDataAddForm()
     if form.validate_on_submit():
         month_data = models.MonthData(
             form.miles.data,
@@ -34,7 +34,7 @@ def add():
 def edit(id):
     month_data = models.MonthData.fetch(id)
     if request.method == 'POST':
-        form = forms.InputForm()
+        form = forms.MonthDataUpdateForm()
         if form.validate_on_submit():
             month_data.miles = form.miles.data
             month_data.avg_drivers = form.avg_drivers.data
@@ -43,17 +43,16 @@ def edit(id):
             return redirect(url_for('index'))
     elif request.method == 'GET':
         formdata = MultiDict({
-            'month': month_data.month_id[:2],
-            'year': month_data.month_id[-4:],
             'miles': month_data.miles,
             'avg_drivers': month_data.avg_drivers
         })
-        form = forms.InputForm(formdata=formdata)
+        form = forms.MonthDataUpdateForm(formdata=formdata)
         flash(month_data)
     return render_template(
         'edit.html',
         title = 'Add Entry - KPI Data',
-        form = form
+        form = form,
+        month = month_data.month_id
     )
 
 @app.route('/history')

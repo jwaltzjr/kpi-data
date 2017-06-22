@@ -8,29 +8,18 @@
       <table class="table">
         <tr>
           <th>MONTH</th>
-          <th>YEAR</th>
           <th>MILES</th>
           <th>AVG DRIVERS</th>
           <th></th>
         </tr>
         <tr>
-          <td>{{ form.month(disabled=True) }}</td>
-          <td>{{ form.year(disabled=True) }}</td>
+          <td>{{ month }}</td>
           <td>{{ form.miles }}</td>
           <td>{{ form.avg_drivers }}</td>
           <td><input class="btn btn-default" type="submit" value="Submit"></td>
         </tr>
         <tr>
-          <td>
-            {% for error in form.month.errors %}
-              <span>{{ error }}</span>
-            {% endfor %}
-          </td>
-          <td>
-            {% for error in form.year.errors %}
-              <span>{{ error }}</span>
-            {% endfor %}
-          </td>
+          <td></td>
           <td>
             {% for error in form.miles.errors %}
               <span>{{ error }}</span>
