@@ -57,7 +57,11 @@ def edit(id):
 
 @app.route('/history')
 def history():
-    data = models.MonthData.fetchall()
+    data = sorted(
+        models.MonthData.fetchall(),
+        key=lambda month: month.month_id,
+        reverse=True
+    )
     return render_template(
         'history.html',
         title = 'History - KPI Data',
