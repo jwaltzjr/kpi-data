@@ -8,7 +8,7 @@ from . import forms, models
 def index():
     return render_template(
         'index.html',
-        title = 'KPI Data'
+        title='KPI Data'
     )
 
 @app.route('/add', methods=['GET','POST'])
@@ -18,16 +18,16 @@ def add():
         month_data = models.MonthData(
             form.miles.data,
             form.avg_drivers.data,
-            month = form.month.data,
-            year = form.year.data,
+            month=form.month.data,
+            year=form.year.data,
         )
         month_data.insert()
         flash('Month {} has been saved.'.format(month_data))
         return redirect(url_for('index'))
     return render_template(
         'add.html',
-        title = 'Add Entry - KPI Data',
-        form = form
+        title='Add Entry - KPI Data',
+        form=form
     )
 
 @app.route('/edit/<id>', methods=['GET','POST'])
@@ -50,9 +50,9 @@ def edit(id):
         flash(month_data)
     return render_template(
         'edit.html',
-        title = 'Add Entry - KPI Data',
-        form = form,
-        month = month_data.month_id
+        title='Add Entry - KPI Data',
+        form=form,
+        month=month_data.month_id
     )
 
 @app.route('/history')
@@ -64,6 +64,6 @@ def history():
     )
     return render_template(
         'history.html',
-        title = 'History - KPI Data',
-        data = data
+        title='History - KPI Data',
+        data=data
     )

@@ -21,7 +21,7 @@ class MonthData(object):
             month = MonthData(
                 row.MILES,
                 row.AVG_DRIVERS,
-                month_id = row.ID
+                month_id=row.ID
             )
             months.append(month)
         return months
@@ -41,7 +41,7 @@ class MonthData(object):
         return MonthData(
             month.MILES,
             month.AVG_DRIVERS,
-            month_id = month.ID
+            month_id=month.ID
         )
 
     def __init__(self, miles, avg_drivers, month=None, year=None, month_id=None):
