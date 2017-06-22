@@ -12,7 +12,7 @@ DATABASE_PASSWORD = EnvVar('DBPassword').value
 
 db = DatabaseConnection(
     '{IBM DB2 ODBC DRIVER - DB2COPY1}',
-    'TM_Reporting_00001',
+    'STALEY',
     DATABASE_NAME,
     DATABASE_USER,
     DATABASE_PASSWORD
