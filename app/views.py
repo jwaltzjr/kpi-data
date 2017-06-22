@@ -1,4 +1,4 @@
-from flask import render_template, url_for, flash, redirect
+from flask import render_template, url_for, flash, redirect, request
 
 from app import app
 from . import forms, models
@@ -39,7 +39,7 @@ def edit(id):
         month_data.update()
         flash('Month {} has been saved.'.format(month_data))
         return redirect(url_for('index'))
-    elif flask.request.method == 'GET':
+    elif request.method == 'GET':
         form.month.data = month_data.month_id[:2],
         form.year.data = month_data.month_id[-4:],
         form.miles.data = month.miles,
