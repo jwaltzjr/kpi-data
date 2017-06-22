@@ -51,7 +51,7 @@ def edit(id):
         form = forms.InputForm(formdata=formdata)
         flash(month_data)
     return render_template(
-        'add.html',
+        'edit.html',
         title = 'Add Entry - KPI Data',
         form = form
     )
