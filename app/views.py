@@ -1,4 +1,5 @@
 from flask import render_template, url_for, flash, redirect, request
+from pyodbc import IntegrityError
 from werkzeug import MultiDict
 
 from app import app
@@ -21,9 +22,14 @@ def add():
             month=form.month.data,
             year=form.year.data,
         )
-        month_data.insert()
-        flash('Month {} has been saved.'.format(month_data))
-        return redirect(url_for('index'))
+        try:
+            month_data.insert()
+        except pyodbc.IntegrityError:
+            flash('Month could not be saved - data for this month already exists.')
+            return redirect(url_for('add'))
+        else:
+            flash('Month {} has been saved.'.format(month_data))
+            return redirect(url_for('index'))
     return render_template(
         'add.html',
         title='Add Entry - KPI Data',
