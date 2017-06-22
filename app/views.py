@@ -34,8 +34,8 @@ def edit(id):
     form = forms.InputForm()
     month_data = models.MonthData.fetch(id)
     if form.validate_on_submit():
-        month_date.miles = form.miles.data
-        month_date.avg_drivers = form.avg_drivers.data
+        month_data.miles = form.miles.data
+        month_data.avg_drivers = form.avg_drivers.data
         month_data.update()
         flash('Month {} has been saved.'.format(month_data))
         return redirect(url_for('index'))
