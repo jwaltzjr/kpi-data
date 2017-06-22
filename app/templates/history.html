@@ -11,12 +11,17 @@
         <th>MONTH</th>
         <th>MILES</th>
         <th>AVG DRIVERS</th>
+        <th></th>
       </tr>
       {% for month in data %}
         <tr>
           <td>{{ month.month_id }}</td>
           <td>{{ month.miles }}</td>
           <td>{{ month.avg_drivers }}</td>
+          <td class="edit-icons">
+            <a href="" class="glyphicon glyphicon-pencil"></a>
+            <a href="" class="glyphicon glyphicon-remove"></a>
+          </td>
         </tr>
       {% endfor %}
     </table>
