@@ -89,3 +89,15 @@ class MonthData(object):
                     self.avg_drivers,
                     self.month_id
                 )
+
+    def delete(self):
+        delete_statement = """
+            DELETE FROM TMWIN.KRC_MONTHLY_KPI_DATA
+            WHERE ID = ?
+        """
+        with db as database:
+            with database.connection.cursor() as cursor:
+                cursor.execute(
+                    delete_statement,
+                    self.month_id
+                )
