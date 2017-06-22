@@ -61,6 +61,23 @@ def edit(id):
         month=month_data.month_id
     )
 
+@app.route('/delete/<id>')
+def delete(id):
+    month_data = models.MonthData.fetch(id)
+    return render_template(
+        'delete.html',
+        title='Delete Entry - KPI Data',
+        month=month_data
+    )
+
+@app.route('/delete/<id>/confirmed')
+def delete_confirmed(id):
+    month_data = models.MonthData.fetch(id)
+    month_string = month_data.__repr__()
+    month_data.delete()
+    flash('Month {} was successfully deleted.'.format(month_string))
+    return redirect(url_for('index'))
+
 @app.route('/history')
 def history():
     data = sorted(

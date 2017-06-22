@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="panel panel-default">
+    <div class="panel-heading">Delete KPI Data</div>
+    <div class="panel-body">
+      <p>Are you sure you want to delete this data? This action cannot be undone!</p>
+    </div>
+    <table class="table">
+      <tr>
+        <th>MONTH</th>
+        <th>MILES</th>
+        <th>AVG DRIVERS</th>
+        <th></th>
+      </tr>
+      {% for month in data %}
+        <tr>
+          <td>{{ month.month_id }}</td>
+          <td>{{ month.miles }}</td>
+          <td>{{ month.avg_drivers }}</td>
+          <td><a href="{{ url_for('delete_confirmed', id=month.month_id) }}" class="btn btn-danger" value="DELETE"></td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+{% endblock %}
