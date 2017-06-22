@@ -53,7 +53,6 @@ def edit(id):
             'avg_drivers': month_data.avg_drivers
         })
         form = forms.MonthDataUpdateForm(formdata=formdata)
-        flash(month_data)
     return render_template(
         'edit.html',
         title='Add Entry - KPI Data',
