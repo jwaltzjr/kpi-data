@@ -1,4 +1,5 @@
 from flask import render_template, url_for, flash, redirect, request
+from werkzeug import MultiDict
 
 from app import app
 from . import forms, models
@@ -31,24 +32,28 @@ def add():
 
 @app.route('/edit/<id>', methods=['GET','POST'])
 def edit(id):
-    form = forms.InputForm()
     month_data = models.MonthData.fetch(id)
-    if form.validate_on_submit():
-        month_data.miles = form.miles.data
-        month_data.avg_drivers = form.avg_drivers.data
-        month_data.update()
-        flash('Month {} has been saved.'.format(month_data))
-        return redirect(url_for('index'))
+    if request.method == 'POST':
+        form = forms.InputForm()
+        if form.validate_on_submit():
+            month_data.miles = form.miles.data
+            month_data.avg_drivers = form.avg_drivers.data
+            month_data.update()
+            flash('Month {} has been saved.'.format(month_data))
+            return redirect(url_for('index'))
     elif request.method == 'GET':
-        form.month.data = month_data.month_id[:2],
-        form.year.data = month_data.month_id[-4:],
-        form.miles.data = month_data.miles,
-        form.avg_drivers.data = month_data.avg_drivers
+        formdata = MultiDict({
+            'month': month_data.month_id[:2],
+            'year': month_data.month_id[-4:],
+            'miles': month_data.miles,
+            'avg_drivers': month_data.avg_drivers
+        })
+        form = forms.InputForm(formdata=formdata)
+        flash(month_data)
     return render_template(
         'add.html',
         title = 'Add Entry - KPI Data',
-        form = form,
-        month_id = month_data.month_id
+        form = form
     )
 
 @app.route('/history')
