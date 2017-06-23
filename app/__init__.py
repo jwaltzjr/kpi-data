@@ -15,7 +15,9 @@ db = DatabaseConnection(
     'STALEY',
     DATABASE_NAME,
     DATABASE_USER,
-    DATABASE_PASSWORD
+    DATABASE_PASSWORD,
+    hostname='10.10.81.19',
+    port='50000'
 )
 
 from app import views, models
