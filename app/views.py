@@ -24,7 +24,7 @@ def add():
         )
         try:
             month_data.insert()
-        except pyodbc.IntegrityError:
+        except IntegrityError:
             flash('Month could not be saved - data for this month already exists.')
             return redirect(url_for('add'))
         else:
